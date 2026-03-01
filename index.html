@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alcuni dei nostri ricordi ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background:#0b0b12;
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* 🌌 Stelle animate */
+body::before{
+    content:"";
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:radial-gradient(white 1px, transparent 1px);
+    background-size:3px 3px;
+    opacity:0.05;
+    animation:moveStars 60s linear infinite;
+    z-index:-1;
+}
+
+@keyframes moveStars{
+    from{transform:translateY(0);}
+    to{transform:translateY(-200px);}
+}
+
+section{
+    padding:60px 20px;
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    opacity:0;
+    transform:translateY(40px);
+    transition:all 1s ease;
+}
+
+section.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+h2{
+    font-size:22px;
+    margin-bottom:10px;
+}
+
+.date{
+    color:#ff4d6d;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.carousel{
+    display:flex;
+    overflow-x:auto;
+    gap:10px;
+    scroll-snap-type:x mandatory;
+    padding-bottom:10px;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior:smooth;
+}
+
+.carousel img,
+.carousel video{
+    width:85%;
+    border-radius:15px;
+    scroll-snap-align:center;
+}
+
+.final{
+    font-size:32px;
+    cursor:pointer;
+    margin-top:20px;
+    transition:0.3s;
+}
+
+.final:hover{
+    transform:scale(1.1);
+}
+
+#heart{
+    font-size:60px;
+    margin-top:20px;
+    opacity:0;
+    transform:scale(0.5);
+    transition:all 0.6s ease;
+}
+
+#heart.show{
+    opacity:1;
+    transform:scale(1.2);
+}
+
+#messageBox{
+    margin-top:20px;
+    font-size:22px;
+    padding:0 20px;
+    min-height:60px;
+    color:#ffccd5;
+    opacity:0;
+    transition: opacity 1.5s ease;
+}
+</style>
+</head>
+
+<body>
+
+
+<section>
+<h2>Il nostro inizio</h2>
+<div class="date">3 Aprile</div>
+<p>Ci siamo conosciuti su Azar… ancora non ci credo ahah.</p>
+<div class="carousel">
+  <img src="foto1.jpg">
+  <img src="foto2.PNG">
+</div>
+</section>
+
+<section>
+<h2>Il nostro primo incontro MANU + MANU</h2>
+<div class="date">24 Luglio</div>
+<div class="carousel">
+    <img src="luglio1.jpg">
+    <img src="luglio2.jpg">
+    <img src="luglio3.jpg">
+    <img src="luglio5.jpg">
+    <video src="luglio4.mp4" controls preload="metadata"></video>
+</div>
+</section>
+
+<section>
+<h2>Ufficialmente NOI ❤️</h2>
+<div class="date">11 Agosto</div>
+<p>La giornata più bella della mia vita.</p>
+<div class="carousel">
+ <img src="agosto1.jpg">
+ <img src="agosto2.jpg">
+</div>
+</section>
+
+<section>
+<h2>Napoli 🌹</h2>
+<div class="date">Settembre e Ottobre</div>
+<div class="carousel">
+    <img src="set1.jpg">
+    <img src="set3.jpg">
+    <img src="set4.jpg">
+    <img src="set5.jpg">
+    <video src="set2.mp4" controls preload="metadata"></video>
+    <video src="set5.mp4" controls preload="metadata"></video>
+    <video src="set6.mp4" controls preload="metadata"></video>
+</div>
+</section>
+
+<section>
+<h2>Svizzera insieme</h2>
+<div class="date">25 Ottobre</div>
+<p>Mi ha seguito anche al lavoro…<br><small>(e mi ha rotto il telefono 🤭)</small></p>
+<div class="carousel">
+    <img src="s1.jpg">
+    <img src="s2.jpg">
+</div>
+</section>
+
+<section>
+<h2>Dicembre e la neve ❄️</h2>
+<div class="carousel">
+    <img src="nev1.jpg">
+    <img src="nev2.jpg">
+    <img src="nev3.jpg">
+</div>
+</section>
+
+<section>
+<h2>Capodanno a Casa</h2>
+<div class="carousel">
+    <img src="c1.jpg">
+    <img src="c2.jpg">
+    <img src="c3.jpg">
+</div>
+</section>
+
+<section>
+<h2>Le bimbe al sushi 🍣</h2>
+<div class="date">8 Gennaio</div>
+<div class="carousel">
+    <img src="sush.jpg">
+</div>
+</section>
+
+<section>
+<h2>Miami 🌴</h2>
+<div class="date">10 Febbraio</div>
+<p>Ti avevo promesso l’America… e l’abbiamo fatta insieme.</p>
+<div class="carousel">
+    <img src="f.jpg">
+    <img src="f1.jpg">
+    <img src="f2.jpg">
+    <img src="f3.jpg">
+    <img src="f4.jpg">
+    <img src="f5.jpg">
+    <img src="f6.jpg">
+    <img src="f7.jpg">
+</div>
+</section>
+
+<section>
+<p>Nonostante</p>
+<div class="final" onclick="showFinal()">tutto…</div>
+<div id="heart">❤️</div>
+<div id="messageBox"></div>
+</section>
+
+<script>
+/* ✨ Animazione scroll */
+const sections = document.querySelectorAll("section");
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+        }
+    });
+});
+sections.forEach(section => observer.observe(section));
+
+/* ❤️ Messaggi finali */
+const messages = [
+"Nonostante la distanza, io ti scelgo ogni giorno.",
+"Anche se siamo lontani, guardiamo lo stesso cielo.",
+"Non è sempre facile, ma sei sempre la mia scelta.",
+"Non smetto di credere in noi.",
+"Tu sei casa, anche a chilometri di distanza.",
+"Il mio posto preferito è dove ci sei tu.",
+"Siamo più forti dei momenti difficili.",
+"Ti amo da morire."
+];
+
+function showFinal(){
+    const heart = document.getElementById("heart");
+    const box = document.getElementById("messageBox");
+    const music = document.getElementById("bgMusic");
+
+    const random = messages[Math.floor(Math.random() * messages.length)];
+
+    heart.classList.add("show");
+
+    setTimeout(() => {
+        box.innerText = random;
+        box.style.opacity = 1;
+    }, 600);
+
+    music.play().catch(()=>{});
+}
+</script>
+
+</body>
+</html>
